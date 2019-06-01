@@ -1,0 +1,9 @@
+- name: upgrade all yum packages
+  yum:
+    name: "*"
+    state: latest
+
+- name: clean yum cache
+  command: yum clean all
+  args:
+    warn: no

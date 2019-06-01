@@ -1,0 +1,33 @@
+- hosts: piteur-main-server
+  become: yes
+  roles:
+    - base
+    - role: docker
+    - role: pip
+      pip_install_packages:
+        - name: docker
+          state: latest
+        - name: awscli
+          state: latest
+    - docker-gc
+    - docker-logrotate
+    - role: minecraft
+      minecraft_version: 1.14.2
+      minecraft_eula_accept: true
+      minecraft_whitelist: ["PiteurAmber"]
+      minecraft_ops: ["PiteurAmber"]
+      minecraft_server_properties: {
+        difficulty: "normal",
+        force-gamemode: true,
+        gamemode: "survival",
+        level-name: "pepperIceV1",
+        max-players: 10,
+        motd: "Welcome to \\u00A7cPepper\\u00A76-\\u00A79Ice\\u00A7r survival server ! Have \\u00A75fun\\u00A7r and take care.",
+        online-mode: true,
+        op-permission-level: 4,
+        prevent-proxy-connections: false, # let's allow VPN :)
+        server-port: 25565,
+        snooper-enabled: false,
+        white-list: true,
+        enforce-whitelist: true,
+      }

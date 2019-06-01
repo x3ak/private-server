@@ -1,0 +1,23 @@
+- name: Copy spotify/docker-gc exclude file
+  copy:
+    src: "docker-gc-exclude"
+    dest: "/etc/docker-gc-exclude"
+    mode: 0664
+
+- name: Add crontask to run spotify/docker-gc every hour
+  cron:
+    name: "docker garbage collector"
+    special_time: daily
+    job: "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc:ro spotify/docker-gc"
+
+- name: Add crontask to remove dangling volumes
+  cron:
+    name: "docker garbage collector for dangling volumes"
+    special_time: daily
+    job: "docker volume rm `docker volume ls -q -f dangling=true`"
+
+- name: Add crontak to run docker system prune and volumes cleaning
+  cron:
+    name: "docker garbage collector for dangling volumes"
+    special_time: daily
+    job: "docker system prune --force --volumes"

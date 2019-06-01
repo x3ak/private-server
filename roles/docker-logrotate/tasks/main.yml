@@ -1,0 +1,12 @@
+- name: Rotate /var/lib/docker/containers/*/*.log files
+  logrotate:
+    name: docker-container-logs
+    path: /var/lib/docker/containers/*/*.log
+    options:
+      - rotate 7
+      - daily
+      - compress
+      - size=1M
+      - missingok
+      - delaycompress
+      - copytruncate

@@ -1,0 +1,5 @@
+all:
+  hosts:
+    piteur-main-server:
+      ansible_host: 8.8.8.8
+      ansible_connection: ssh

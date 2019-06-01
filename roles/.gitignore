@@ -1,0 +1,7 @@
+docker
+epel-repository
+logrotate
+sudoers
+java
+minecraft
+pip

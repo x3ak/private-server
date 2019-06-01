@@ -1,0 +1,4 @@
+- name: Install utility packages
+  yum:
+    name: ["htop", "jq", "wget", "curl", "tree", "vim"]
+    state: latest

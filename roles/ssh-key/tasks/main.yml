@@ -1,0 +1,13 @@
+- name: "Create admin users with sudo capabilities"
+  user:
+    name: "{{ item.user }}"
+    groups: wheel
+    append: yes
+  with_items: "{{ sshUsers.admin | default([]) }}"
+
+- name: "Add admin keys"
+  authorized_key:
+    user: "{{ item.user }}"
+    state: present
+    key: "{{ item.key }}"
+  with_items: "{{ sshUsers.admin | default([]) }}"
