@@ -1,5 +1,7 @@
 all:
   hosts:
     piteur-main-server:
-      ansible_host: 8.8.8.8
       ansible_connection: ssh
+      ansible_host: minecraft.games.pepper-ice.net
+      ansible_user: root # don't be fooled :)
+      ansible_ssh_private_key_file: ~/.ssh/piteur-main-server-id_rsa

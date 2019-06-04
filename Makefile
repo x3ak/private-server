@@ -45,7 +45,7 @@ ifndef PLAYBOOK
 	echo
 	echo "Here are the available playbooks:"
 	echo -e "\033[0;36m"
-	cd ./playbook && ls -A1 */**.yml | cut -d "." -f 1 | sed 's/^/\t/'
+	cd ./playbook && ls -A1 **.yml | cut -d "." -f 1 | sed 's/^/\t/'
 	echo -e "\033[0m"
 	echo "Aborting."
 	exit 1
@@ -61,7 +61,7 @@ endif
 		echo -e "\033[0;31mUnknown '${PLAYBOOK}' playbook.\033[0m"; \
 		echo "Here are the available playbooks:"; \
 		echo -e "\033[0;36m"; \
-		cd ./playbook && ls -A1 */**.yml | cut -d "." -f 1 | sed 's/^/\t/'; \
+		cd ./playbook && ls -A1 **.yml | cut -d "." -f 1 | sed 's/^/\t/'; \
 		echo -e "\033[0m"; \
 		echo "Aborting."; \
 		exit 1; \
@@ -161,7 +161,7 @@ test: run-ansible-galaxy ## Run tests regarding ami-builder content
 
 test-playbook: is-playbook-valid ## Test a specific ansible playbook. Usage: `make test-playbook PLAYBOOK=< playbook-name >`
 	# launching the docker test container to run the ansible playbooks
-	echo -e -n "Testing '${PLAYBOOK}' playbook…"; \
+	echo -e -n "Testing '${PLAYBOOK}' playbook…"
 	docker build . --no-cache --force-rm --quiet --rm -f build/test/Dockerfile --build-arg PLAYBOOK=${PLAYBOOK} > /dev/null
 	echo -e " \033[0;36m\u2714\033[0m"
 
@@ -171,6 +171,5 @@ run: is-playbook-valid run-ansible-galaxy test-playbook ## Run a playbook on a p
 	echo -e "\033[0;36mRunning '${PLAYBOOK}' playbook…\033[0m"
 	ansible-playbook \
 		--vault-password-file secrets/vault_password \
-		--ask-pass \
 		--inventory-file inventory/inventory.yml \
 		playbook/${PLAYBOOK}.yml
