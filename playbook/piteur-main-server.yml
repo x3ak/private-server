@@ -14,8 +14,8 @@
     - role: minecraft
       minecraft_version: 1.14.2
       minecraft_eula_accept: true
-      minecraft_whitelist: ["PiteurAmber"]
-      minecraft_ops: ["PiteurAmber"]
+      minecraft_whitelist: []
+      minecraft_ops: ["PiteurAmber", "Lighty50", "Andallio"]
       minecraft_server_properties: {
         difficulty: "normal",
         force-gamemode: true,
