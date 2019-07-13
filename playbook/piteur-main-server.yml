@@ -14,7 +14,7 @@
     - role: minecraft
       minecraft_version: 1.14.2
       minecraft_eula_accept: true
-      minecraft_whitelist: []
+      minecraft_whitelist: ["x3ak"]
       minecraft_ops: ["PiteurAmber", "Lighty50", "Andallio"]
       minecraft_server_properties: {
         difficulty: "normal",
